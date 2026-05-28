@@ -83,3 +83,49 @@ class UserUriResponse(BaseModel):
     nodes: Optional[List[NodeUri]] = []
     normal_sub: Optional[str] = None
     error: Optional[str] = None
+
+
+class BatchUserInput(BaseModel):
+    username: str
+    password: str
+    traffic_limit: int
+    expiration_days: int
+    creation_date: Optional[str] = None
+    unlimited: bool = False
+    note: Optional[str] = None
+
+
+class BatchCreateUsersRequest(BaseModel):
+    users: List[BatchUserInput]
+
+    @field_validator('users')
+    def validate_users_count(cls, v):
+        if not v:
+            raise ValueError('users list must not be empty')
+        if len(v) > 10000:
+            raise ValueError('users list must not exceed 10 000 items')
+        return v
+
+
+class BatchCreatedUser(BaseModel):
+    username: str
+
+
+class BatchSkippedUser(BaseModel):
+    username: str
+    reason: str
+
+
+class BatchErrorEntry(BaseModel):
+    index: int
+    username: str
+    reason: str
+
+
+class BatchCreateUsersResponse(BaseModel):
+    created_count: int
+    skipped_count: int
+    failed_count: int
+    created: List[BatchCreatedUser]
+    skipped: List[BatchSkippedUser]
+    errors: List[BatchErrorEntry]
