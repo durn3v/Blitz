@@ -3,7 +3,7 @@
 [![Telegram](https://img.shields.io/badge/Telegram-Join%20Chat-26A5E4?logo=telegram&logoColor=white)](https://t.me/hysteria2_panel)
 [![Docs](https://img.shields.io/badge/Docs-Read%20Now-FFA500?logo=bookstack&logoColor=white)](https://returnfi.github.io/Blitz-docs/)
 [![Language](https://img.shields.io/badge/Language-Persian-009688?logo=google-translate&logoColor=white)](README-fa.md)
-[![Latest Release](https://img.shields.io/badge/Release-Latest-brightgreen?logo=github)](https://github.com/ReturnFI/Blitz/releases)
+[![Latest Release](https://img.shields.io/badge/Release-Latest-brightgreen?logo=github)](https://github.com/durn3v/Blitz/releases)
 [![License](https://img.shields.io/badge/License-GPL-blueviolet?logo=open-source-initiative&logoColor=white)](LICENSE)
 [![Made with ❤️](https://img.shields.io/badge/Made%20with-%E2%9D%A4-red)](#)
 
@@ -28,7 +28,7 @@ A powerful and user-friendly management panel for Hysteria2 proxy server. Featur
 
 ### One-Click Installation
 ```bash
-bash <(curl https://raw.githubusercontent.com/ReturnFI/Blitz/main/install.sh)
+bash <(curl https://raw.githubusercontent.com/durn3v/Blitz/main/install.sh)
 ```
 After installation, use `hys2` to launch the management panel.
 

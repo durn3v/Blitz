@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
         $('#viewRelease').off('click').on('click', function(e) {
             e.preventDefault();
-            window.open('https://github.com/ReturnFI/Blitz/releases/latest', '_blank');
+            window.open('https://github.com/durn3v/Blitz/releases/latest', '_blank');
         });
         
         $('#showChangelog').off('click').on('click', function() {

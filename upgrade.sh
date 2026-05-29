@@ -29,7 +29,7 @@ check_avx_support() {
         error "CPU does not support the required AVX instruction set for MongoDB."
         info "Your system is not compatible with this version."
         info "Please use the 'nodb' upgrade script instead:"
-        echo -e "${YELLOW}bash <(curl -sL https://raw.githubusercontent.com/ReturnFI/Blitz/nodb/upgrade.sh)${RESET}"
+        echo -e "${YELLOW}bash <(curl -sL https://raw.githubusercontent.com/durn3v/Blitz/nodb/upgrade.sh)${RESET}"
         error "Upgrade aborted."
         exit 1
     fi
@@ -166,7 +166,7 @@ download_and_extract_latest_release() {
     info "Detected architecture: $arch"
 
     local zip_name="Blitz-${arch}.zip"
-    local download_url="https://github.com/ReturnFI/Blitz/releases/latest/download/${zip_name}"
+    local download_url="https://github.com/durn3v/Blitz/releases/latest/download/${zip_name}"
     local temp_zip="/tmp/${zip_name}"
 
     info "Downloading latest release from ${download_url}..."

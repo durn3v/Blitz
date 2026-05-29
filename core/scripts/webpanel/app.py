@@ -28,7 +28,7 @@ def create_app() -> FastAPI:
         description='Webpanel for Hysteria2',
         version='0.2.0',
         contact={
-            'github': 'https://github.com/ReturnFI/Blitz'
+            'github': 'https://github.com/durn3v/Blitz'
         },
         debug=CONFIGS.DEBUG,
         root_path=f'/{CONFIGS.ROOT_PATH}',

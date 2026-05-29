@@ -7,7 +7,7 @@ Thank you for your interest in contributing to Blitz Panel! We appreciate your h
 1. **Fork the repository** on GitHub
 2. **Clone your fork** locally
    ```
-   git clone https://github.com/ReturnFI/Blitz.git
+   git clone https://github.com/durn3v/Blitz.git
    cd Blitz
    ```
 3. **Create a new branch** for your feature or bugfix
@@ -48,7 +48,7 @@ Thank you for your interest in contributing to Blitz Panel! We appreciate your h
 
 If you find a bug or have a suggestion for improvement:
 
-1. Check the [Issues](https://github.com/ReturnFI/Blitz/issues) page to see if it has already been reported
+1. Check the [Issues](https://github.com/durn3v/Blitz/issues) page to see if it has already been reported
 2. If not, create a new issue with:
    - A clear title
    - A detailed description
