@@ -5,10 +5,9 @@ import sys
 import time
 from datetime import datetime
 from pathlib import Path
-from typing import List, Tuple
+from typing import List, Optional, Tuple
 
 from fastapi import APIRouter, HTTPException
-from pymongo.errors import BulkWriteError
 
 from .schema.user import (
     UserListResponse,
@@ -30,10 +29,19 @@ import cli_api
 logger = logging.getLogger(__name__)
 
 _SCRIPTS_DIR = Path(__file__).resolve().parents[4]
-if str(_SCRIPTS_DIR) not in sys.path:
-    sys.path.insert(0, str(_SCRIPTS_DIR))
+_db = None
 
-from db.database import db  # noqa: E402
+
+def _get_db():
+    global _db
+    if _db is not None:
+        return _db
+    if str(_SCRIPTS_DIR) not in sys.path:
+        sys.path.insert(0, str(_SCRIPTS_DIR))
+    from db.database import db as database  # noqa: E402
+    _db = database
+    return _db
+
 
 TRAFFIC_BYTES_PER_GB = 1073741824
 USERNAME_PATTERN = re.compile(r"^[a-zA-Z0-9_]+$")
@@ -115,7 +123,7 @@ async def add_bulk_users_api(body: AddBulkUsersInputBody):
                             detail=f"An unexpected error occurred while adding bulk users: {str(e)}")
 
 
-def _validate_batch_user(index: int, user) -> Tuple[str | None, str | None]:
+def _validate_batch_user(index: int, user) -> Tuple[Optional[str], Optional[str]]:
     """Return (username_lower, error_reason) — username_lower set when valid."""
     username = user.username
     if not USERNAME_PATTERN.match(username):
@@ -157,6 +165,9 @@ def batch_create_users_api(body: BatchCreateUsersRequest):
     Create many users in one request with explicit usernames and passwords.
     Uses direct MongoDB insert_many (no subprocess per user).
     """
+    from pymongo.errors import BulkWriteError
+
+    db = _get_db()
     if db is None:
         raise HTTPException(
             status_code=500,

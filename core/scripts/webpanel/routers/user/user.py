@@ -35,15 +35,15 @@ async def get_users_page(
         users: list[User] = [User.from_dict(user_data.get('username', ''), user_data) for user_data in paginated_list]
 
         return templates.TemplateResponse(
+            request,
             'users.html',
             {
                 'users': users,
-                'request': request,
                 'current_page': page,
                 'total_pages': total_pages,
                 'limit': limit,
                 'total_users': total_users,
-            }
+            },
         )
     except Exception as e:
         raise HTTPException(status_code=400, detail=f'Error: {str(e)}')
@@ -89,8 +89,7 @@ async def search_users(
         users: list[User] = [User.from_dict(user_data.get('username', ''), user_data) for user_data in filtered_users_data]
 
         return templates.TemplateResponse(
-            'users_rows.html',
-            {'request': request, 'users': users}
+            request, 'users_rows.html', {'users': users},
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

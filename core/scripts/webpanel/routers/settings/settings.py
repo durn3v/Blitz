@@ -7,14 +7,14 @@ router = APIRouter()
 
 @router.get('/')
 async def settings(request: Request, templates: Jinja2Templates = Depends(get_templates)):
-    return templates.TemplateResponse('settings.html', {'request': request})
+    return templates.TemplateResponse(request, 'settings.html')
 
 
 @router.get('/config')
 async def config(request: Request, templates: Jinja2Templates = Depends(get_templates)):
-    return templates.TemplateResponse('config.html', {'request': request})
+    return templates.TemplateResponse(request, 'config.html')
 
 
 @router.get('/hysteria')
 async def hysteria_settings(request: Request, templates: Jinja2Templates = Depends(get_templates)):
-    return templates.TemplateResponse('hysteria_settings.html', {'request': request})
+    return templates.TemplateResponse(request, 'hysteria_settings.html')

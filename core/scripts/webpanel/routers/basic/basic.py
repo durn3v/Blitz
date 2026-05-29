@@ -8,7 +8,7 @@ router = APIRouter()
 
 @router.get('/')
 async def index(request: Request, templates: Jinja2Templates = Depends(get_templates)):
-    return templates.TemplateResponse('index.html', {'request': request})
+    return templates.TemplateResponse(request, 'index.html')
 
 
 @router.get('/robots.txt')

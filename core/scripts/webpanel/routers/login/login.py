@@ -12,7 +12,7 @@ router = APIRouter()
 
 @router.get('/login')
 async def login(request: Request, templates: Jinja2Templates = Depends(get_templates)):
-    return templates.TemplateResponse('login.html', {'request': request})
+    return templates.TemplateResponse(request, 'login.html')
 
 
 @router.post('/login')
@@ -26,7 +26,9 @@ async def login_post(
     '''
     password_hash = sha256(password.encode()).hexdigest()
     if not username == CONFIGS.ADMIN_USERNAME or not password_hash == CONFIGS.ADMIN_PASSWORD:  # type: ignore
-        return templates.TemplateResponse('login.html', {'request': request, 'error': 'Invalid username or password'})
+        return templates.TemplateResponse(
+            request, 'login.html', {'error': 'Invalid username or password'},
+        )
 
     session_id = session_manager.set_session(username)
 
